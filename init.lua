@@ -12,9 +12,9 @@ vim.opt.rtp:prepend(lazypath)
 
 if vim.g.vscode then
   -- VSCode Neovim
-  require "lua.yuval.keymaps"
-  require "lua.yuval.plugins"
-  require "lua.yuval.settings"
+  require "yuval.plugins"
+  require "yuval.keymaps"
+  require "yuval.settings"
 else
   -- Ordinary Neovim
   require("lazy").setup({
@@ -22,6 +22,5 @@ else
       { "LazyVim/LazyVim",                       import = "lazyvim.plugins" },
       { import = "lazyvim.plugins.extras.vscode" },
     },
-
   })
 end

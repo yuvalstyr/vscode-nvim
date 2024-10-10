@@ -1,5 +1,6 @@
 return require("lazy").setup {
-    { "folke/flash.nvim",
+    {
+        "folke/flash.nvim",
         event = "VeryLazy",
         opts = {
             jump = {
