@@ -36,7 +36,7 @@ keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench
 keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
 keymap({ "n", "v" }, "<leader><leader>", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
 keymap({ "n", "v" }, "<leader>co", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
-
+keymap({ "n", "v" }, "<leader>ss", "<cmd>lua require('vscode').action('workbench.action.gotoSymbol')<CR>")
 keymap({ "n", "v" }, "<leader>db", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
 keymap({ "n", "v" }, "<leader>dr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
 
@@ -66,3 +66,15 @@ keymap({ "n", "v" }, "<leader>pe", "<cmd>lua require('vscode').action('projectMa
 -- git keymaps
 keymap({ "n", "v" }, "<leader>gg", "<cmd>lua require('vscode').action('lazygit-vscode.toggle')<CR>")
 keymap({ "n", "v" }, "<leader>gh", "<cmd>lua require('vscode').action('git.revertSelectedRanges')<CR>")
+
+local vscode = require('vscode')
+
+local function hideSidebarAndPanel()
+    vscode.call('workbench.action.closePanel')
+    vscode.call('workbench.action.minimizeOtherEditorsHideSidebar')
+end
+
+vim.keymap.set({ "n", "x" }, "<C-h>", function()
+    vscode.action("_ping", {
+        callback = hideSidebarAndPanel })
+end)
